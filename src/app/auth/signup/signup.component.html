@@ -1,11 +1,38 @@
 <section class="signup-section">
-    <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (submit)="onSubmit(f)" >
-        <mat-form-field>
-            <input matInput type="email" placeholder="Email" ngModel name="email">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="password" placeholder="Parola" ngModel name="password">
-        </mat-form-field>
-        <button type="submit" mat-raised-button color="primary">Test</button>
-    </form>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (submit)="onSubmit(f)"
+  >
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        placeholder="Email"
+        ngModel
+        name="email"
+        #emailInput="ngModel"
+        email
+        required
+      />
+      <mat-error *ngIf="emailInput.hasError('required')">E-Mail boş bırakılamaz.</mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')">E-Mail tanımsızdır.</mat-error>
+    </mat-form-field>
+    <mat-form-field hintLabel="En az 6 karakter olmalıdır.">
+      <input
+        matInput
+        type="password"
+        placeholder="Parola"
+        ngModel
+        name="password"
+        minlength="6"
+        required
+        #pwInput="ngModel"
+      />
+      <mat-hint align="end">{{pwInput.value?.length}}/6</mat-hint>
+      <mat-error> En az 6 karakter olmalıdır.</mat-error>
+    </mat-form-field>
+    <button disabled="!f.enabled" type="submit" mat-raised-button color="primary">Test</button>
+  </form>
 </section>

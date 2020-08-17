@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
   }
-  onSubmit(_f:NgForm){
-    console.log(_f);
+  onSubmit(f: NgForm) {
+    console.log(f);
   }
 }
