@@ -3,7 +3,17 @@
     <p>Yan Menü</p>
   </mat-sidenav>
   <mat-sidenav-content>
-    <button (click)="sideNav.toggle()">Yan Menü Aç</button>
-    <router-outlet></router-outlet>
+      <mat-toolbar color="accent">
+         <div><button (click)="sideNav.toggle()">Toggle SideNav</button></div>
+         <div>LOGO</div>
+         <div>
+             <a Routerlink="/signup">Kayıt</a>
+             <a Routerlink="/login">Giriş</a>
+             <a Routerlink="training">Eğitim</a>
+         </div>
+      </mat-toolbar>
+    <main>
+        <router-outlet></router-outlet>
+   </main>
   </mat-sidenav-content>
 </mat-sidenav-container>
