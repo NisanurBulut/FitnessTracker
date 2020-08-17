@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #sideNav role="navigation">
+    <p>Yan Menü</p>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button (click)="sideNav.toggle()">Yan Menü Aç</button>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
