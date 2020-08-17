@@ -1,1 +1,50 @@
-<p>login works!</p>
+<section class="signup-section">
+    <form
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="20px"
+      #f="ngForm"
+      (submit)="onSubmit(f)"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          type="email"
+          placeholder="Email"
+          ngModel
+          name="email"
+          #emailInput="ngModel"
+          email
+          required
+        />
+        <mat-error *ngIf="emailInput.hasError('required')"
+          >E-Mail boş bırakılamaz.</mat-error
+        >
+        <mat-error *ngIf="!emailInput.hasError('required')"
+          >E-Mail tanımsızdır.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field hintLabel="En az 6 karakter olmalıdır.">
+        <input
+          matInput
+          type="password"
+          placeholder="Parola"
+          ngModel
+          name="password"
+          minlength="6"
+          required
+          #pwInput="ngModel"
+        />
+        <mat-hint align="end">{{ pwInput.value?.length || 0 }}/6</mat-hint>
+        <mat-error> En az 6 karakter olmalıdır.</mat-error>
+      </mat-form-field>
+      <button
+        disabled="f.invalid"
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        Oturum Aç
+      </button>
+    </form>
+  </section>

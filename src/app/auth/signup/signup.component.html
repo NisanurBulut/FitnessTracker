@@ -2,6 +2,7 @@
   <form
     fxLayout="column"
     fxLayoutAlign="center center"
+    fxLayoutGap="20px"
     #f="ngForm"
     (submit)="onSubmit(f)"
   >
@@ -43,13 +44,14 @@
         placeholder="Tarih Seçiniz"
         [matDatepicker]="picker"
         [max]="maxDate"
+        name="birthDay"
+        ngModel
+        required
       />
       <mat-datepicker-toggle
         matSuffix
         [for]="picker"
-        ngModel
-        name="birthDay"
-        required
+
       ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -62,7 +64,7 @@
       >Şartları ve lisansı kabul et</mat-checkbox
     >
     <button
-      disabled="!f.enabled"
+      disabled="f.invalid"
       type="submit"
       mat-raised-button
       color="primary"
