@@ -8,9 +8,12 @@ import { Injectable } from '@angular/core';
 export class TrainingService {
     exerciseChange = new Subject<Exercise>();
     exercisesChange = new Subject<Exercise[]>();
+    finishedExercisesChange = new Subject<Exercise[]>();
+
     private runningExercise: Exercise;
     private exercises: Exercise[] = [];
     private availableExercises: Exercise[] = [];
+    private finishedExercises: Exercise[] = [];
     constructor(private db: AngularFirestore) { }
     completeExercise() {
         this.addDataToDatabase({
@@ -55,6 +58,14 @@ export class TrainingService {
     }
     getAllExercises() {
         return this.exercises.slice();
+    }
+    fetchComplatedOrCancelledExercises() {
+        return this.db.collection('finishedExercises')
+            .valueChanges()
+            .subscribe((exercises: Exercise[]) => {
+                this.finishedExercises = exercises;
+                this.finishedExercisesChange.next(exercises);
+            });
     }
     startExercise(selectId: string) {
         this.runningExercise = this.availableExercises.find(
