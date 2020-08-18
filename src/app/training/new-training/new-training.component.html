@@ -6,9 +6,12 @@
     <mat-card-content fxLayoutAlign="center">
       <mat-form-field>
         <mat-select>
-          <mat-option>Seçenek 1</mat-option>
-          <mat-option>Seçenek 1</mat-option>
-          <mat-option>Seçenek 1</mat-option>
+          <mat-option
+            *ngFor="let exercise of this.exercises"
+            [value]="exercise.id"
+          >
+            {{ exercise.name }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </mat-card-content>
