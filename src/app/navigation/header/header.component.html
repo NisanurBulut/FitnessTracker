@@ -7,9 +7,10 @@
     <div routerLink="/">LOGO</div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
       <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-        <li><a Routerlink="/signup">Kayıt</a></li>
-        <li><a Routerlink="/login">Giriş</a></li>
-        <li><a Routerlink="training">Eğitim</a></li>
+        <li *ngIf="!isAuth"><a Routerlink="/signup">Kayıt</a></li>
+        <li *ngIf="!isAuth"><a Routerlink="/login">Giriş</a></li>
+        <li *ngIf="isAuth"><a Routerlink="training">Eğitim</a></li>
+        <li *ngIf="isAuth"><a>Çıkış</a></li>
       </ul>
     </div>
   </mat-toolbar>
