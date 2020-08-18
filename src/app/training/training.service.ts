@@ -6,13 +6,14 @@ export class TrainingService {
     private runningExercise: Exercise;
     private exercises: Exercise[] = [];
     private availableExercises: Exercise[] = [
-        { id: 'crunches0', name: 'Crunches', duration: 30, calories: 8 },
-        { id: 'crunches1', name: 'Crunches', duration: 30, calories: 8 },
-        { id: 'crunches2', name: 'Crunches', duration: 30, calories: 8 },
-        { id: 'crunches3', name: 'Crunches', duration: 30, calories: 8 },
-        { id: 'crunches4', name: 'Crunches', duration: 30, calories: 8 }
+        { id: 'crunches0', name: 'Crunches0', duration: 30, calories: 8 },
+        { id: 'crunches1', name: 'Crunches1', duration: 30, calories: 8 },
+        { id: 'crunches2', name: 'Crunches2', duration: 30, calories: 8 },
+        { id: 'crunches3', name: 'Crunches3', duration: 30, calories: 8 },
+        { id: 'crunches4', name: 'Crunches4', duration: 30, calories: 8 }
     ];
     completeExercise() {
+        console.log(this.runningExercise);
         this.exercises.push({ ...this.runningExercise, date: new Date(), state: 'completed' });
         this.runningExercise = null;
         this.exerciseChange.next(null);

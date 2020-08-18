@@ -1,22 +1,22 @@
-<mat-table [dataSource]="dataSource">
+<mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="date">
-    <mat-header-cell *matHeaderCellDef>Zaman</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Zaman</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.date | date }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef>Egzersiz</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Egzersiz</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="calories">
-    <mat-header-cell *matHeaderCellDef>Kalori</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Kalori</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.calories | number}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="duration">
-    <mat-header-cell *matHeaderCellDef>Süre</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Süre</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.duration | number}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="state">
-    <mat-header-cell *matHeaderCellDef>Durum</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Durum</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.state}}</mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
