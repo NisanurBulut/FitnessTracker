@@ -1,8 +1,6 @@
 <mat-tab-group *ngIf="!onGoingTraining">
   <mat-tab label="Egzersiz Ekle">
-    <app-new-training
-      (startTraining)="onGoingTraining = true"
-    ></app-new-training>
+    <app-new-training></app-new-training>
   </mat-tab>
   <mat-tab label="Tamamlanmış Egzersizler">
     <app-past-training></app-past-training>
