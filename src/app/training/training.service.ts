@@ -7,14 +7,13 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TrainingService {
     exerciseChange = new Subject<Exercise>();
-    exercisesChange=new Subject<Exercise[]>();
+    exercisesChange = new Subject<Exercise[]>();
     private runningExercise: Exercise;
     private exercises: Exercise[] = [];
     private availableExercises: Exercise[] = [];
     constructor(private db: AngularFirestore) { }
     completeExercise() {
-        console.log(this.runningExercise);
-        this.exercises.push({
+        this.addDataToDatabase({
             ...this.runningExercise,
             date: new Date(),
             state: 'completed'
@@ -23,7 +22,7 @@ export class TrainingService {
         this.exerciseChange.next(null);
     }
     cancelExercise(progress: number) {
-        this.exercises.push({
+        this.addDataToDatabase({
             ...this.runningExercise,
             date: new Date(),
             duration: this.runningExercise.duration * (progress / 100),
@@ -46,6 +45,7 @@ export class TrainingService {
                     };
                 });
             })).subscribe((exercises: Exercise[]) => {
+                console.log(exercises);
                 this.availableExercises = exercises;
                 this.exercisesChange.next([...this.availableExercises]);
             });
@@ -61,5 +61,9 @@ export class TrainingService {
             a => a.id === selectId
         );
         this.exerciseChange.next({ ...this.runningExercise });
+    }
+    private addDataToDatabase(exercise: Exercise) {
+        this.db.collection('finishedExercises')
+            .add(exercise);
     }
 }
