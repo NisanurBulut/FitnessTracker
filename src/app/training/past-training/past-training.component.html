@@ -1,24 +1,40 @@
+<div fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+    <input
+      matInput
+      type="text"
+      (keyup)="doFilter($event.target.value)"
+      placeholder="Ara..."
+    />
+  </mat-form-field>
+</div>
 <mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="date">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Zaman</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.date | date }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Egzersiz</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Egzersiz</mat-header-cell
+    >
     <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="calories">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Kalori</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.calories | number}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{
+      element.calories | number
+    }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="duration">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Süre</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.duration | number}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{
+      element.duration | number
+    }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="state">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Durum</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.state}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{ element.state }}</mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
