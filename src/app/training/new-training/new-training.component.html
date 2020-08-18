@@ -1,5 +1,5 @@
 <section class="new-training" fxLayout fxLayoutAlign="center center">
-  <form (ngSubmit)="onStartTraining(f)" #f="ngForm">
+  <form  #f="ngForm" (ngSubmit)="onStartTraining(f)">
   <mat-card fxFlex.xs="100%" fxFlex="400px">
     <mat-card-title fxLayoutAlign="center"
       >şimdi Egzersiz Zamanı !</mat-card-title
@@ -17,7 +17,7 @@
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions fxLayoutAlign="center">
-      <button mat-button type="submit" (click)="onStartTraining()" disabled="f.invalid">
+      <button color="accent" mat-raised-button type="submit" disabled="{{f.invalid}}">
         Başla
       </button>
     </mat-card-actions>
