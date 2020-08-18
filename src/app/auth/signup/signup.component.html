@@ -48,11 +48,7 @@
         ngModel
         required
       />
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="picker"
-
-      ></mat-datepicker-toggle>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-checkbox
@@ -63,12 +59,7 @@
       required
       >Şartları ve lisansı kabul et</mat-checkbox
     >
-    <button
-      disabled="f.invalid"
-      type="submit"
-      mat-raised-button
-      color="primary"
-    >
+    <button disabled="!f.valid" type="submit" mat-raised-button color="primary">
       Kaydet
     </button>
   </form>
