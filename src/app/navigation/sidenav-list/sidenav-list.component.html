@@ -1,17 +1,17 @@
 <mat-nav-list>
-    <a mat-list-item Routerlink="/signup" (click)="onClose()">
+    <a mat-list-item Routerlink="/signup" (click)="onClose()" *ngIf="!isAuth">
       <mat-icon> face </mat-icon>
       <span class="nav-caption">Kayıt</span></a
     >
-    <a mat-list-item Routerlink="/login">
+    <a mat-list-item Routerlink="/login"  *ngIf="!isAuth">
       <mat-icon>input</mat-icon>
       <span class="nav-caption">Giriş</span></a
     >
-    <a mat-list-item Routerlink="training">
+    <a mat-list-item Routerlink="training"  *ngIf="isAuth">
       <mat-icon>fitness_center</mat-icon>
       <span class="nav-caption">Eğitim</span></a
     >
-    <a mat-list-item Routerlink="logOut">
+    <a mat-list-item Routerlink="logOut" *ngIf="isAuth">
       <mat-icon>eject</mat-icon>
       <span class="nav-caption">Çıkış</span></a
     >
