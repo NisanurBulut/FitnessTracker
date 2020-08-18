@@ -14,13 +14,18 @@ export class TrainingService {
     ];
     completeExercise() {
         console.log(this.runningExercise);
-        this.exercises.push({ ...this.runningExercise, date: new Date(), state: 'completed' });
+        this.exercises.push({ ...this.runningExercise,
+            date: new Date(),
+            state: 'completed' });
         this.runningExercise = null;
         this.exerciseChange.next(null);
-
     }
     cancelExercise(progress: number) {
-        this.exercises.push({ ...this.runningExercise, date: new Date(), duration: this.runningExercise.duration * (progress / 100), calories: this.runningExercise.calories * (progress / 100), state: 'completed' });
+        this.exercises.push({ ...this.runningExercise,
+            date: new Date(),
+            duration: this.runningExercise.duration * (progress / 100),
+            calories: this.runningExercise.calories * (progress / 100),
+            state: 'cancelled' });
         this.runningExercise = null;
         this.exerciseChange.next(null);
     }
