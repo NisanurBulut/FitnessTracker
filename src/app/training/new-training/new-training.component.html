@@ -8,7 +8,7 @@
       <mat-form-field>
         <mat-select placeHolder="Egzersiz seçin" ngModel name="exercise" required>
           <mat-option
-            *ngFor="let exercise of this.exercises | async"
+            *ngFor="let exercise of this.exercises"
             [value]="exercise.id"
           >
             {{ exercise.name }}

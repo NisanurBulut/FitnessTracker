@@ -48,7 +48,6 @@ export class TrainingService {
                     };
                 });
             })).subscribe((exercises: Exercise[]) => {
-                console.log(exercises);
                 this.availableExercises = exercises;
                 this.exercisesChange.next([...this.availableExercises]);
             });
@@ -68,7 +67,7 @@ export class TrainingService {
             });
     }
     startExercise(selectId: string) {
-        this.db.doc('availableExercise/'+selectId)
+        this.db.doc('availableExercises/'+selectId)
         .update({lastSelected:new Date()});
         this.runningExercise = this.availableExercises.find(
             a => a.id === selectId
