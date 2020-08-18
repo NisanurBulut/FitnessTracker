@@ -19,7 +19,7 @@ export class TrainingService {
 
     }
     cancelExercise(progress: number) {
-        this.exercises.push({ ...this.runningExercise, date: new Date(), duration: this.runningExercise.duration * (progress / 100), calories: this.runningExercise.duration * (progress / 100), state: 'completed' });
+        this.exercises.push({ ...this.runningExercise, date: new Date(), duration: this.runningExercise.duration * (progress / 100), calories: this.runningExercise.calories * (progress / 100), state: 'completed' });
         this.runningExercise = null;
         this.exerciseChange.next(null);
     }
