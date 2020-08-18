@@ -59,7 +59,7 @@
       required
       >Şartları ve lisansı kabul et</mat-checkbox
     >
-    <button disabled="!f.valid" type="submit" mat-raised-button color="primary">
+    <button disabled="{{f.invalid}}" type="submit" mat-raised-button color="primary">
       Kaydet
     </button>
   </form>

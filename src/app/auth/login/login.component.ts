@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,11 +9,13 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private as: AuthService) { }
+  constructor(private as: AuthService) {
+  }
 
   ngOnInit() {
   }
   onSubmit(f: NgForm) {
+    console.log(f);
     this.as.login({
       email: f.value.email,
       password: f.value.password

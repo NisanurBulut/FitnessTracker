@@ -30,6 +30,7 @@ export class AuthService {
     logout() {
         this.user = null;
         this.authChange.next(false);
+        this.router.navigate(['']);
     }
     getUser() {
         return { ...this.user };
@@ -38,7 +39,7 @@ export class AuthService {
         return this.user != null;
     }
     private authSuccessfully() {
-        this.authSuccessfully(); this.authChange.next(true);
+        this.authChange.next(true);
         this.router.navigate(['/training']);
     }
 }
