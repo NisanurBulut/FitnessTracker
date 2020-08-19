@@ -17,6 +17,7 @@ import { AuthService } from './auth/auth.service';
 import { environment } from 'src/environments/environment';
 import { AuthModule } from './auth/auth.module';
 import { TrainingModule } from './training/training.module';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -33,11 +34,11 @@ import { TrainingModule } from './training/training.module';
     MaterialModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
-
-    TrainingModule,
+    AngularFirestoreModule,
     AuthModule
   ],
   providers: [AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [StopTrainingComponent]
 })
 export class AppModule { }

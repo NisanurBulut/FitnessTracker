@@ -7,6 +7,7 @@ import { TrainingService } from '../training/Training.service';
 import { StopTrainingComponent } from '../training/stop-training/stop-training.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { SharedModule } from '../shared/shared.module';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
     imports: [
         ReactiveFormsModule,
         AngularFireAuthModule,
-        SharedModule],
+        SharedModule,
+        AuthRoutingModule],
     exports: [],
     providers: [TrainingService, UIService],
     entryComponents: [StopTrainingComponent]
