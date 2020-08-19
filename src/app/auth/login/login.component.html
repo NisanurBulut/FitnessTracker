@@ -38,7 +38,7 @@
         <mat-hint align="end">{{ pwInput.value?.length || 0 }}/6</mat-hint>
         <mat-error> En az 6 karakter olmalıdır.</mat-error>
       </mat-form-field>
-      <button
+      <button *ngIf="!isLoading"
         disabled="{{loginForm.invalid}}"
         type="submit"
         mat-raised-button
@@ -46,5 +46,6 @@
       >
         Oturum Aç
       </button>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
     </form>
   </section>
