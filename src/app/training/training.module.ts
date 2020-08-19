@@ -16,8 +16,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
         TrainingComponent,
         CurrentTrainingComponent,
         NewTrainingComponent,
-        PastTrainingComponent,
-        StopTrainingComponent
+        PastTrainingComponent
     ],
     imports: [
         CommonModule,
@@ -30,4 +29,4 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     exports: [],
     entryComponents: [StopTrainingComponent]
 })
-export class Trainingmodule { }
+export class TrainingModule { }

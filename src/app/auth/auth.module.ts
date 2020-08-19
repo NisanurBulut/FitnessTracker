@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { UIService } from '../shared/ui-service';
 import { TrainingService } from '../training/Training.service';
 import { StopTrainingComponent } from '../training/stop-training/stop-training.component';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { StopTrainingComponent } from '../training/stop-training/stop-training.c
         FormsModule,
         ReactiveFormsModule,
         MaterialModule,
-        FlexLayoutModule],
+        FlexLayoutModule,
+        AngularFireAuthModule],
     exports: [],
     providers: [TrainingService, UIService],
     entryComponents: [StopTrainingComponent]
