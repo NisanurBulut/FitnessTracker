@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { UIService } from '../shared/ui-service';
+import { TrainingService } from '../training/Training.service';
+import { StopTrainingComponent } from '../training/stop-training/stop-training.component';
 
 @NgModule({
     declarations: [
@@ -17,6 +20,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         ReactiveFormsModule,
         MaterialModule,
         FlexLayoutModule],
-    exports: []
+    exports: [],
+    providers: [TrainingService, UIService],
+    entryComponents: [StopTrainingComponent]
 })
 export class AuthModule { }
