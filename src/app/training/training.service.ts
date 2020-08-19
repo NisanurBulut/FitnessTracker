@@ -58,6 +58,8 @@ export class TrainingService {
                 this.exercisesChange.next([...this.availableExercises]);
             }, error => {
                 this.uis.loadingStateSubject.next(false);
+                this.uis.showSnackBar(error.message, null, 3000);
+                this.exercisesChange.next(null);
             }));
     }
     getRunningExercise() {
