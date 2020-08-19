@@ -59,8 +59,15 @@
       required
       >Şartları ve lisansı kabul et</mat-checkbox
     >
-    <button disabled="{{f.invalid}}" type="submit" mat-raised-button color="primary">
+    <button
+      *ngIf="!isLoading"
+      disabled="{{ f.invalid }}"
+      type="submit"
+      mat-raised-button
+      color="primary"
+    >
       Kaydet
     </button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
   </form>
 </section>
