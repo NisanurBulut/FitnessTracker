@@ -1,16 +1,20 @@
-import { User } from './user.model';
-import { AuthData } from './auth-data.model';
-
 import { Subject } from 'rxjs/Subject';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { MatSnackBar } from '@angular/material';
+
+import { AuthData } from './auth-data.model';
+import { User } from './user.model';
 import { TrainingService } from '../training/Training.service';
 @Injectable()
 export class AuthService {
     public authChange = new Subject<boolean>();
     private isAuthenticated = false;
-    constructor(private router: Router, private afAuth: AngularFireAuth, private ts: TrainingService) { }
+    constructor(private router: Router,
+                private afAuth: AngularFireAuth,
+                private ts: TrainingService,
+                private snackBar: MatSnackBar) { }
 
     initAuthListener() {
         this.afAuth.authState.subscribe(user => {
@@ -29,10 +33,11 @@ export class AuthService {
     registerUser(authData: AuthData) {
         this.afAuth.auth.createUserWithEmailAndPassword(authData.email, authData.password)
             .then(result => {
-
             })
             .catch(error => {
-                console.log(error);
+                this.snackBar.open(error.message, null, {
+                    duration: 3000
+                });
             });
     }
     login(authData: AuthData) {
@@ -41,7 +46,9 @@ export class AuthService {
 
             })
             .catch(error => {
-                console.log(error);
+                this.snackBar.open(error.message, null, {
+                    duration: 3000
+                });
             });
 
     }
