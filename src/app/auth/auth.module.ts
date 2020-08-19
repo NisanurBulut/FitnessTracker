@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UIService } from '../shared/ui-service';
 import { TrainingService } from '../training/Training.service';
 import { StopTrainingComponent } from '../training/stop-training/stop-training.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -16,12 +14,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
         LoginComponent,
     ],
     imports: [
-        CommonModule,
-        FormsModule,
         ReactiveFormsModule,
-        MaterialModule,
-        FlexLayoutModule,
-        AngularFireAuthModule],
+        AngularFireAuthModule,
+        SharedModule],
     exports: [],
     providers: [TrainingService, UIService],
     entryComponents: [StopTrainingComponent]
