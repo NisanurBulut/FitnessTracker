@@ -11,7 +11,7 @@
 <mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="date">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Zaman</mat-header-cell>
-    <mat-cell *matCellDef="let element"><p *ngIf="element">{{ element.date | date }}</p></mat-cell>
+    <mat-cell *matCellDef="let element"><p *ngIf="element">{{ element.date?.toDate() | date: 'medium' }}</p></mat-cell>
   </ng-container>
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header
