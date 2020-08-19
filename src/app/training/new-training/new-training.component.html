@@ -1,27 +1,39 @@
 <section class="new-training" fxLayout fxLayoutAlign="center center">
-  <form  #f="ngForm" (ngSubmit)="onStartTraining(f)">
-  <mat-card fxFlex.xs="100%" fxFlex="400px">
-    <mat-card-title fxLayoutAlign="center"
-      >şimdi Egzersiz Zamanı !</mat-card-title
-    >
-    <mat-card-content fxLayoutAlign="center">
-      <mat-form-field>
-        <mat-select placeHolder="Egzersiz seçin" ngModel name="exercise" required>
-          <mat-option
-            *ngFor="let exercise of this.exercises"
-            [value]="exercise.id"
+  <form #f="ngForm" (ngSubmit)="onStartTraining(f)">
+    <mat-card fxFlex.xs="100%" fxFlex="400px">
+      <mat-card-title fxLayoutAlign="center"
+        >şimdi Egzersiz Zamanı !</mat-card-title
+      >
+      <mat-card-content fxLayoutAlign="center">
+        <mat-form-field *ngIf="!isLoading">
+          <mat-select
+            placeHolder="Egzersiz seçin"
+            ngModel
+            name="exercise"
+            required
           >
-            {{ exercise.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions fxLayoutAlign="center">
-      <button color="accent" mat-raised-button type="submit" disabled="{{f.invalid}}">
-        Başla
-      </button>
-    </mat-card-actions>
-    <mat-card-footer></mat-card-footer>
-  </mat-card>
-</form>
+            <mat-option
+              *ngFor="let exercise of this.exercises"
+              [value]="exercise.id"
+            >
+              {{ exercise.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center">
+        <button
+          color="accent"
+          *ngIf="!isLoading"
+          mat-raised-button
+          type="submit"
+          disabled="{{ f.invalid }}"
+        >
+          Başla
+        </button>
+      </mat-card-actions>
+      <mat-card-footer></mat-card-footer>
+    </mat-card>
+  </form>
 </section>
