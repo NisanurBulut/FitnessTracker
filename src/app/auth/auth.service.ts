@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthData } from './auth-data.model';
-import { User } from './user.model';
 import { TrainingService } from '../training/Training.service';
 import { UIService } from '../shared/ui-service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../app.reducer';
 @Injectable()
 export class AuthService {
     public authChange = new Subject<boolean>();
@@ -14,7 +15,8 @@ export class AuthService {
     constructor(private router: Router,
                 private afAuth: AngularFireAuth,
                 private ts: TrainingService,
-                private uis: UIService) { }
+                private uis: UIService,
+                private store: Store<{ ui: fromApp.State }>) { }
 
     initAuthListener() {
         this.afAuth.authState.subscribe(user => {
@@ -31,24 +33,30 @@ export class AuthService {
         });
     }
     registerUser(authData: AuthData) {
-        this.uis.loadingStateSubject.next(true);
+        // this.uis.loadingStateSubject.next(true);
+        this.store.dispatch({ type: 'START_LOADING' });
         this.afAuth.auth.createUserWithEmailAndPassword(authData.email, authData.password)
             .then(result => {
-                this.uis.loadingStateSubject.next(false);
+                // this.uis.loadingStateSubject.next(false);
+                this.store.dispatch({ type: 'STOP_LOADING' });
             })
             .catch(error => {
-                this.uis.loadingStateSubject.next(true);
+                // this.uis.loadingStateSubject.next(true);
+                this.store.dispatch({ type: 'START_LOADING' });
                 this.uis.showSnackBar(error.message, null, 3000);
             });
     }
     login(authData: AuthData) {
-        this.uis.loadingStateSubject.next(true);
+        // this.uis.loadingStateSubject.next(true);
+        this.store.dispatch({ type: 'START_LOADING' });
         this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password)
             .then(result => {
-                this.uis.loadingStateSubject.next(false);
+                // this.uis.loadingStateSubject.next(false);
+                this.store.dispatch({ type: 'STOP_LOADING' });
             })
             .catch(error => {
-                this.uis.loadingStateSubject.next(false);
+                // this.uis.loadingStateSubject.next(false);
+                this.store.dispatch({ type: 'STOP_LOADING' });
                 this.uis.showSnackBar(error.message, null, 3000);
             });
 
