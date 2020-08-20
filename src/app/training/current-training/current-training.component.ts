@@ -23,7 +23,7 @@ export class CurrentTrainingComponent implements OnInit {
     this.store.select(fromTraining.getActiveTraining).pipe(take(1)).subscribe(ex => {
       const step = ex.duration / 100 * 1000;
       this.timer = setInterval(() => {
-        this.progress = this.progress + 0.5;
+        this.progress = this.progress + 1;
         if (this.progress >= 100) {
           this.ts.completeExercise();
           clearInterval(this.timer);
