@@ -1,22 +1,33 @@
 <mat-nav-list>
-  <a mat-list-item routerLink="/signup" routerLinkActive
-   (click)="onClose()" *ngIf="!isAuth">
+  <a
+    mat-list-item
+    routerLink="/signup"
+    routerLinkActive
+    (click)="onClose()"
+    *ngIf="!(isAuth$ | async)"
+  >
     <mat-icon> face </mat-icon>
     <span class="nav-caption">Kayıt</span></a
   >
-  <a mat-list-item routerLink="/login" routerLinkActive *ngIf="!isAuth">
+  <a
+    mat-list-item
+    routerLink="/login"
+    routerLinkActive
+    *ngIf="!(isAuth$ | async)"
+  >
     <mat-icon>input</mat-icon>
     <span class="nav-caption">Giriş</span></a
   >
-  <a mat-list-item routerLink="/training" routerLinkActive *ngIf="isAuth">
+  <a
+    mat-list-item
+    routerLink="/training"
+    routerLinkActive
+    *ngIf="isAuth$ | async"
+  >
     <mat-icon>fitness_center</mat-icon>
     <span class="nav-caption">Eğitim</span></a
   >
-  <a
-    mat-list-item
-    *ngIf="isAuth"
-    (click)="onLogout()"
-  >
+  <a mat-list-item *ngIf="isAuth$ | async" (click)="onLogout()">
     <mat-icon>eject</mat-icon>
     <span class="nav-caption">Çıkış</span></a
   >

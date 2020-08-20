@@ -7,22 +7,22 @@
   <div routerLink="/">Fitness</div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-      <li *ngIf="!isAuth">
+      <li *ngIf="!(isAuth$ |async)">
         <a routerLink="/signup" routerLinkActive>
           <span class="nav-caption">Kayıt</span>
         </a>
       </li>
-      <li *ngIf="!isAuth">
+      <li *ngIf="!(isAuth$ |async)">
         <a routerLink="/login" routerLinkActive>
           <span class="nav-caption">Giriş</span>
         </a>
       </li>
-      <li *ngIf="isAuth">
+      <li *ngIf="(isAuth$ |async)">
         <a routerLink="/training" routerLinkActive>
           <span class="nav-caption">Eğitim</span>
         </a>
       </li>
-      <li *ngIf="isAuth" style="cursor: pointer;" (click)="onLogout()">
+      <li *ngIf="(isAuth$ |async)" style="cursor: pointer;" (click)="onLogout()">
         <a>Çıkış</a>
       </li>
     </ul>

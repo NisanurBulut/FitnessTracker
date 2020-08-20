@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
   }
   onSubmit(f: NgForm) {
-    console.log(f);
     this.as.login({
       email: f.value.email,
       password: f.value.password

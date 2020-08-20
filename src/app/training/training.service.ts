@@ -5,7 +5,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { UIService } from '../shared/ui-service';
-import * as fromRoot from '../app.reducer';
+import * as Training from './training.actions';
+import * as fromTraining from './training.reducer';
 import * as UI from '../shared/ui.actions';
 import { Store } from '@ngrx/store';
 
@@ -23,15 +24,17 @@ export class TrainingService {
     constructor(
         private db: AngularFirestore,
         private uis: UIService,
-        private store:Store<fromRoot.State>) { }
+        private store: Store<fromTraining.State>) { }
+    startExercise(selectId: string) {
+        this.store.dispatch(new Training.StartExercise(selectId));
+    }
     completeExercise() {
         this.addDataToDatabase({
             ...this.runningExercise,
             date: new Date(),
             state: 'completed'
         });
-        this.runningExercise = null;
-        this.exerciseChange.next(null);
+        this.store.dispatch(new Training.StopExercise(this.runningExercise));
     }
     cancelExercise(progress: number) {
         this.addDataToDatabase({
@@ -41,8 +44,7 @@ export class TrainingService {
             calories: this.runningExercise.calories * (progress / 100),
             state: 'cancelled'
         });
-        this.runningExercise = null;
-        this.exerciseChange.next(null);
+        this.store.dispatch(new Training.StopExercise(this.runningExercise));
     }
     fetchAvailableExercices() {
         this.store.dispatch(new UI.StartLoading());
@@ -59,12 +61,12 @@ export class TrainingService {
                 });
             })).subscribe((exercises: Exercise[]) => {
                 this.store.dispatch(new UI.StopLoading());
-                this.availableExercises = exercises;
-                this.exercisesChange.next([...this.availableExercises]);
+                this.store.dispatch(new Training.SetAvailableTrainings(exercises));
+
             }, error => {
                 this.store.dispatch(new UI.StopLoading());
                 this.uis.showSnackBar(error.message, null, 3000);
-                this.exercisesChange.next(null);
+                this.store.dispatch(new Training.SetAvailableTrainings(null));
             }));
     }
     getRunningExercise() {
@@ -77,17 +79,12 @@ export class TrainingService {
         this.fbSubs.push(this.db.collection('finishedExercises')
             .valueChanges()
             .subscribe((exercises: Exercise[]) => {
-                this.finishedExercisesChange.next(exercises);
+                this.store.dispatch(new Training.SetFinishedTrainings(exercises));
             }, error => {
-                console.log(error);
+                this.store.dispatch(new Training.SetFinishedTrainings(null));
             }));
     }
-    startExercise(selectId: string) {
-        this.runningExercise = this.availableExercises.find(
-            a => a.id === selectId
-        );
-        this.exerciseChange.next({ ...this.runningExercise });
-    }
+
     cancelSubscriptions() {
         this.fbSubs.forEach(sub => sub.unsubscribe());
     }
