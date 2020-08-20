@@ -4,8 +4,7 @@ import { AuthService } from '../auth.service';
 import { UIService } from 'src/app/shared/ui-service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../app.reducer';
-
+import * as fromUi from './../../shared/ui.reducer';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +13,8 @@ import * as fromApp from '../../app.reducer';
 export class LoginComponent implements OnInit, OnDestroy {
   isLoading = false;
   private loadingSub: Subscription;
-  constructor(private as: AuthService, private uis: UIService, private store: Store<{ ui: fromApp.State }>) {
+  constructor(private as: AuthService, private uis: UIService,
+              private store: Store<{ ui: fromUi.State }>) {
   }
 
   ngOnInit() {
