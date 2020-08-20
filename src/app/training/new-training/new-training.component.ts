@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { TrainingService } from '../Training.service';
 import { Exercise } from '../exercise.model';
-import { UIService } from 'src/app/shared/ui-service';
+import * as fromTraining from '../training.reducer';
 import * as fromRoot from '../../app.reducer';
 import { Store } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-new-training',
@@ -14,20 +15,17 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./new-training.component.css']
 })
 export class NewTrainingComponent implements OnInit {
-  exercises: Exercise[];
+  exercises$: Observable<Exercise[]>;
 
   isLoading$: Observable<boolean>;
   constructor(
     private ts: TrainingService,
-    private store: Store<fromRoot.State>) {
+    private store: Store<fromTraining.State>) {
   }
 
   ngOnInit() {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
-    this.ts.exercisesChange
-      .subscribe((exresult: Exercise[]) => {
-        this.exercises = exresult;
-      });
+    this.exercises$ = this.store.select(fromTraining.getAvailableExercises);
     this.fetchAgain();
   }
   fetchAgain() {
