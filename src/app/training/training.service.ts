@@ -12,20 +12,18 @@ import { Store } from '@ngrx/store';
 
 @Injectable()
 export class TrainingService {
-    exerciseChange = new Subject<Exercise>();
-    exercisesChange = new Subject<Exercise[]>();
+
     finishedExercisesChange = new Subject<Exercise[]>();
 
-    private runningExercise: Exercise;
+
     private exercises: Exercise[] = [];
-    private availableExercises: Exercise[] = [];
     private fbSubs: Subscription[] = [];
 
     constructor(
         private db: AngularFirestore,
         private uis: UIService,
         private store: Store<fromTraining.State>) { }
-    startExercise(selectId: string) {
+        startExercise(selectId: string) {
         this.store.dispatch(new Training.StartExercise(selectId));
     }
     completeExercise() {
