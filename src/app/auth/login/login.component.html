@@ -1,51 +1,52 @@
 <section class="signup-section">
-    <form
-      fxLayout="column"
-      fxLayoutAlign="center center"
-      fxLayoutGap="20px"
-      #loginForm="ngForm"
-      (submit)="onSubmit(loginForm)"
-    >
-      <mat-form-field>
-        <input
-          matInput
-          type="email"
-          placeholder="Email"
-          ngModel
-          name="email"
-          #emailInput="ngModel"
-          email
-          required
-        />
-        <mat-error *ngIf="emailInput.hasError('required')"
-          >E-Mail boş bırakılamaz.</mat-error
-        >
-        <mat-error *ngIf="!emailInput.hasError('required')"
-          >E-Mail tanımsızdır.</mat-error
-        >
-      </mat-form-field>
-      <mat-form-field hintLabel="En az 6 karakter olmalıdır.">
-        <input
-          matInput
-          type="password"
-          placeholder="Parola"
-          ngModel
-          name="password"
-          minlength="6"
-          required
-          #pwInput="ngModel"
-        />
-        <mat-hint align="end">{{ pwInput.value?.length || 0 }}/6</mat-hint>
-        <mat-error> En az 6 karakter olmalıdır.</mat-error>
-      </mat-form-field>
-      <button *ngIf="!isLoading"
-        disabled="{{loginForm.invalid}}"
-        type="submit"
-        mat-raised-button
-        color="primary"
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="20px"
+    #loginForm="ngForm"
+    (submit)="onSubmit(loginForm)"
+  >
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        placeholder="Email"
+        ngModel
+        name="email"
+        #emailInput="ngModel"
+        email
+        required
+      />
+      <mat-error *ngIf="emailInput.hasError('required')"
+        >E-Mail boş bırakılamaz.</mat-error
       >
-        Oturum Aç
-      </button>
-      <mat-spinner *ngIf="isLoading"></mat-spinner>
-    </form>
-  </section>
+      <mat-error *ngIf="!emailInput.hasError('required')"
+        >E-Mail tanımsızdır.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field hintLabel="En az 6 karakter olmalıdır.">
+      <input
+        matInput
+        type="password"
+        placeholder="Parola"
+        ngModel
+        name="password"
+        minlength="6"
+        required
+        #pwInput="ngModel"
+      />
+      <mat-hint align="end">{{ pwInput.value?.length || 0 }}/6</mat-hint>
+      <mat-error> En az 6 karakter olmalıdır.</mat-error>
+    </mat-form-field>
+    <button
+      *ngIf="!(isLoading$ | async)"
+      disabled="{{ loginForm.invalid }}"
+      type="submit"
+      mat-raised-button
+      color="primary"
+    >
+      Oturum Aç
+    </button>
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+  </form>
+</section>
