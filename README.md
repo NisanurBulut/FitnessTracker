@@ -9,6 +9,6 @@ FireBase cloud ve authentication kullanılarak veri kayıt işlemleri yapılmı�
 
 
 Ana Ekran
-![Ana Ekran](https://github.com/NisanurBulut/FitnessTracker/tree/master/src/assets/anaEkran.gif)
+![Ana Ekran](https://github.com/NisanurBulut/FitnessTracker/blob/master/src/assets/anaEkran.gif)
 
 [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
