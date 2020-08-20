@@ -22,10 +22,10 @@
         </mat-form-field>
         <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
       </mat-card-content>
-      <mat-card-actions fxLayoutAlign="center" *ngIf="(isLoading$ | async)">
+      <mat-card-actions fxLayoutAlign="center" *ngIf="(exercises$ | async)">
         <button
           color="accent"
-          *ngIf="exercises$ | async"
+          *ngIf="(exercises$ | async)"
           mat-raised-button
           type="submit"
           disabled="{{ f.invalid }}"

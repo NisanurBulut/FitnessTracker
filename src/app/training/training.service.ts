@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs/Subject';
 import { Exercise } from './exercise.model';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -29,22 +29,26 @@ export class TrainingService {
         this.store.dispatch(new Training.StartExercise(selectId));
     }
     completeExercise() {
-        this.addDataToDatabase({
-            ...this.runningExercise,
-            date: new Date(),
-            state: 'completed'
+        this.store.select(fromTraining.getActiveTraining).pipe(take(1)).subscribe(ex => {
+            this.addDataToDatabase({
+                ...ex,
+                date: new Date(),
+                state: 'completed'
+            });
+            this.store.dispatch(new Training.StopExercise(null));
         });
-        this.store.dispatch(new Training.StopExercise(this.runningExercise));
     }
     cancelExercise(progress: number) {
-        this.addDataToDatabase({
-            ...this.runningExercise,
-            date: new Date(),
-            duration: this.runningExercise.duration * (progress / 100),
-            calories: this.runningExercise.calories * (progress / 100),
-            state: 'cancelled'
+        this.store.select(fromTraining.getActiveTraining).pipe(take(1)).subscribe(ex => {
+            this.addDataToDatabase({
+                ...ex,
+                date: new Date(),
+                duration: ex.duration * (progress / 100),
+                calories: ex.calories * (progress / 100),
+                state: 'cancelled'
+            });
+            this.store.dispatch(new Training.StopExercise(null));
         });
-        this.store.dispatch(new Training.StopExercise(this.runningExercise));
     }
     fetchAvailableExercices() {
         this.store.dispatch(new UI.StartLoading());
@@ -68,9 +72,6 @@ export class TrainingService {
                 this.uis.showSnackBar(error.message, null, 3000);
                 this.store.dispatch(new Training.SetAvailableTrainings(null));
             }));
-    }
-    getRunningExercise() {
-        return { ...this.runningExercise };
     }
     getAllExercises() {
         return this.exercises.slice();
