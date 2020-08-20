@@ -5,6 +5,9 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { UIService } from '../shared/ui-service';
+import * as fromRoot from '../app.reducer';
+import * as UI from '../shared/ui.actions';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class TrainingService {
@@ -15,10 +18,12 @@ export class TrainingService {
     private runningExercise: Exercise;
     private exercises: Exercise[] = [];
     private availableExercises: Exercise[] = [];
-    private finishedExercises: Exercise[] = [];
     private fbSubs: Subscription[] = [];
 
-    constructor(private db: AngularFirestore, private uis: UIService) { }
+    constructor(
+        private db: AngularFirestore,
+        private uis: UIService,
+        private store:Store<fromRoot.State>) { }
     completeExercise() {
         this.addDataToDatabase({
             ...this.runningExercise,
@@ -40,7 +45,7 @@ export class TrainingService {
         this.exerciseChange.next(null);
     }
     fetchAvailableExercices() {
-        this.uis.loadingStateSubject.next(true);
+        this.store.dispatch(new UI.StartLoading());
         this.fbSubs.push(this.db.collection('availableExercises')
             .snapshotChanges()
             .pipe(map(docArray => {
@@ -53,11 +58,11 @@ export class TrainingService {
                     };
                 });
             })).subscribe((exercises: Exercise[]) => {
-                this.uis.loadingStateSubject.next(false);
+                this.store.dispatch(new UI.StopLoading());
                 this.availableExercises = exercises;
                 this.exercisesChange.next([...this.availableExercises]);
             }, error => {
-                this.uis.loadingStateSubject.next(false);
+                this.store.dispatch(new UI.StopLoading());
                 this.uis.showSnackBar(error.message, null, 3000);
                 this.exercisesChange.next(null);
             }));
@@ -72,15 +77,12 @@ export class TrainingService {
         this.fbSubs.push(this.db.collection('finishedExercises')
             .valueChanges()
             .subscribe((exercises: Exercise[]) => {
-                this.finishedExercises = exercises;
                 this.finishedExercisesChange.next(exercises);
             }, error => {
                 console.log(error);
             }));
     }
     startExercise(selectId: string) {
-        // this.db.doc('availableExercises/'+selectId)
-        // .update({lastSelected:new Date()});
         this.runningExercise = this.availableExercises.find(
             a => a.id === selectId
         );

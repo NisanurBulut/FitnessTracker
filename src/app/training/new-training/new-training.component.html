@@ -5,7 +5,7 @@
         >şimdi Egzersiz Zamanı !</mat-card-title
       >
       <mat-card-content fxLayoutAlign="center">
-        <mat-form-field *ngIf="!isLoading && exercises">
+        <mat-form-field *ngIf="!(isLoading$ | async) && exercises">
           <mat-select
             placeHolder="Egzersiz seçin"
             ngModel
@@ -20,9 +20,9 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
       </mat-card-content>
-      <mat-card-actions fxLayoutAlign="center">
+      <mat-card-actions fxLayoutAlign="center" *ngIf="(isLoading$ | async)">
         <button
           color="accent"
           *ngIf="exercises"
@@ -33,15 +33,15 @@
           Başla
         </button>
         <button
-        color="accent"
-        *ngIf="!exercises"
-        mat-raised-button
-        type="button"
-        (click)="fetchAgain()"
-        disabled="{{ f.invalid }}"
-      >
-        Tekrar Deneyin
-      </button>
+          color="accent"
+          *ngIf="!exercises"
+          mat-raised-button
+          type="button"
+          (click)="fetchAgain()"
+          disabled="{{ f.invalid }}"
+        >
+          Tekrar Deneyin
+        </button>
       </mat-card-actions>
       <mat-card-footer></mat-card-footer>
     </mat-card>

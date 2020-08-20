@@ -1,32 +1,31 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { TrainingService } from '../Training.service';
 import { Exercise } from '../exercise.model';
 import { UIService } from 'src/app/shared/ui-service';
-
+import * as fromRoot from '../../app.reducer';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-new-training',
   templateUrl: './new-training.component.html',
   styleUrls: ['./new-training.component.css']
 })
-export class NewTrainingComponent implements OnInit, OnDestroy {
+export class NewTrainingComponent implements OnInit {
   exercises: Exercise[];
-  private exercisesSubscription: Subscription;
-  private loadingSubscription: Subscription;
-  isLoading = true;
-  constructor(private ts: TrainingService, private uis: UIService) {
+
+  isLoading$: Observable<boolean>;
+  constructor(
+    private ts: TrainingService,
+    private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.loadingSubscription = this.uis.loadingStateSubject.subscribe(isload => {
-      this.isLoading = isload;
-    });
-    this.exercisesSubscription = this.ts.exercisesChange
+    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
+    this.ts.exercisesChange
       .subscribe((exresult: Exercise[]) => {
-        this.isLoading = false;
         this.exercises = exresult;
       });
     this.fetchAgain();
@@ -36,13 +35,5 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
   }
   onStartTraining(form: NgForm): void {
     this.ts.startExercise(form.value.exercise);
-  }
-  ngOnDestroy() {
-    if (this.exercisesSubscription) {
-      this.exercisesSubscription.unsubscribe();
-    }
-    if (this.loadingSubscription) {
-      this.loadingSubscription.unsubscribe();
-    }
   }
 }
