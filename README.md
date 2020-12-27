@@ -3,7 +3,7 @@
 Uygulamaya üye olunur ve oturum açılır.
 Tanımlı egzersiz listesinden seçim yapılır ve egzersiz kaydı oluşturulur.
 Egzersiz iptal edilebilir.
-Gerçekleşen ve iptal eidlen egzersiz kayıtları listelenebilir. Bu liste üzerinde arama ve sıralama işlemleri uygulanabilir.
+Gerçekleşen ve iptal edilen egzersiz kayıtları listelenebilir. Bu liste üzerinde arama ve sıralama işlemleri uygulanabilir.
 
 FireBase cloud ve authentication kullanılarak veri kayıt işlemleri yapılmıştır.
 
