@@ -21,8 +21,11 @@ html,body{
       right: 0px;
       bottom: 0px;
       left: 0px;
-      opacity: 0.85;
+      opacity: 0.5;
   }
-  .container::after{
-    margin-top: 15%;
+  .container>*{
+    position: absolute;
+    content: "";
+    top: 20%;
+    font-weight: bold !important;
   }
