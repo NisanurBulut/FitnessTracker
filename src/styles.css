@@ -6,10 +6,23 @@ html,body{
     color:#fff !important;
   }
   .container{
-    width:100%;
-    height: 700px;
-    background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
-    display:flex;
-    justify-content:center;
-    padding-top: 5%;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .container::before{
+    content: "";
+      background-image: url('./assets/Başlıksız.png');
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.85;
+  }
+  .container::after{
+    margin-top: 15%;
   }

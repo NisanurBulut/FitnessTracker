@@ -1,9 +1,5 @@
 .signup-section {
-  margin: 10px !important;
-  border-radius: 10px;
-  border: 2px solid;
-  border-color:   #e6aae3;
-  box-shadow: 4px 8px  #e791e3;
+ margin-top: 5% !important;
 }
 .form-login{
     margin: 50px !important;
