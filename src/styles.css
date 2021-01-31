@@ -14,7 +14,7 @@ html,body{
   }
   .container::before{
     content: "";
-      background-image: url('./assets/Başlıksız.png');
+      background-image: url('./assets/main.png');
       background-size: cover;
       position: absolute;
       top: 0px;
