@@ -36,12 +36,12 @@
         #pwInput="ngModel"
       />
       <mat-hint align="end">{{ pwInput.value?.length || 0 }}/6</mat-hint>
-      <mat-error> En az 6 karakter olmalıdır.</mat-error>
+      <mat-error> Must be at least 6 characters</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input
         matInput
-        placeholder="Tarih Seçiniz"
+        placeholder="Choose Date"
         [matDatepicker]="picker"
         [max]="maxDate"
         name="birthDay"
@@ -57,7 +57,7 @@
       ngModel
       name="agree"
       required
-      >Şartları ve lisansı kabul et</mat-checkbox
+      >Accept the terms and license</mat-checkbox
     >
     <button
       *ngIf="!(isLoading$ | async)"
@@ -66,7 +66,7 @@
       mat-raised-button
       color="primary"
     >
-      Kaydet
+      Save
     </button>
     <mat-spinner *ngIf="(isLoading$ | async)"></mat-spinner>
   </form>
