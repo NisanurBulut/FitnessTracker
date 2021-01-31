@@ -18,17 +18,17 @@
         required
       />
       <mat-error *ngIf="emailInput.hasError('required')"
-        >E-Mail boş bırakılamaz.</mat-error
+        >E-Mail cannot be left blank</mat-error
       >
       <mat-error *ngIf="!emailInput.hasError('required')"
-        >E-Mail tanımsızdır.</mat-error
+        >E-Mail is not defined</mat-error
       >
     </mat-form-field>
     <mat-form-field hintLabel="En az 6 karakter olmalıdır.">
       <input
         matInput
         type="password"
-        placeholder="Parola"
+        placeholder="Password"
         ngModel
         name="password"
         minlength="6"
