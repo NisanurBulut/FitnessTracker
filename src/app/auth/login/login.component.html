@@ -19,17 +19,17 @@
         required
       />
       <mat-error *ngIf="emailInput.hasError('required')"
-        >E-Mail boş bırakılamaz.</mat-error
+        >E-Mail cannot be left blank</mat-error
       >
       <mat-error *ngIf="!emailInput.hasError('required')"
-        >E-Mail tanımsızdır.</mat-error
+        >E-Mail is not defined</mat-error
       >
     </mat-form-field>
-    <mat-form-field hintLabel="En az 6 karakter olmalıdır.">
+    <mat-form-field hintLabel="Must be at least 6 characters">
       <input
         matInput
         type="password"
-        placeholder="Parola"
+        placeholder="Password"
         ngModel
         name="password"
         minlength="6"
@@ -37,7 +37,7 @@
         #pwInput="ngModel"
       />
       <mat-hint align="end">{{ pwInput.value?.length || 0 }}/6</mat-hint>
-      <mat-error> En az 6 karakter olmalıdır.</mat-error>
+      <mat-error> Must be at least 6 characters</mat-error>
     </mat-form-field>
     <button
       *ngIf="!(isLoading$ | async)"
