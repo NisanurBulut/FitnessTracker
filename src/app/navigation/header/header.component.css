@@ -16,3 +16,7 @@ a {
     display: inline-block;
     padding-left: 6px;
   }
+  .logo{
+    outline:none;
+    cursor: pointer;
+  }

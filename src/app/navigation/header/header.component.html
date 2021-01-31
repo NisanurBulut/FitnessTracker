@@ -1,29 +1,29 @@
-<mat-toolbar color="accent">
+<mat-toolbar color="primary">
   <div fxHide.gt-xs>
     <button mat-icon-button (click)="onToggleSidenav()">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <div routerLink="/">Fitness</div>
+  <div class="logo" routerLink="/">Fitness</div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
       <li *ngIf="!(isAuth$ |async)">
         <a routerLink="/signup" routerLinkActive>
-          <span class="nav-caption">Kayıt</span>
+          <span class="nav-caption">Sign up</span>
         </a>
       </li>
       <li *ngIf="!(isAuth$ |async)">
         <a routerLink="/login" routerLinkActive>
-          <span class="nav-caption">Giriş</span>
+          <span class="nav-caption">Sign In</span>
         </a>
       </li>
       <li *ngIf="(isAuth$ |async)">
         <a routerLink="/training" routerLinkActive>
-          <span class="nav-caption">Eğitim</span>
+          <span class="nav-caption">Education</span>
         </a>
       </li>
       <li *ngIf="(isAuth$ |async)" style="cursor: pointer;" (click)="onLogout()">
-        <a>Çıkış</a>
+        <a>Sign Out</a>
       </li>
     </ul>
   </div>

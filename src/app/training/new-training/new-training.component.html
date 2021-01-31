@@ -2,7 +2,7 @@
   <form #f="ngForm" (ngSubmit)="onStartTraining(f)">
     <mat-card fxFlex.xs="100%" fxFlex="400px">
       <mat-card-title fxLayoutAlign="center"
-        >şimdi Egzersiz Zamanı !</mat-card-title
+        >Now is Exercise Time !</mat-card-title
       >
       <mat-card-content fxLayoutAlign="center">
         <mat-form-field *ngIf="!(isLoading$ | async) && (exercises$ |async)">
@@ -24,23 +24,23 @@
       </mat-card-content>
       <mat-card-actions fxLayoutAlign="center" *ngIf="(exercises$ | async)">
         <button
-          color="accent"
+          color="primary"
           *ngIf="(exercises$ | async)"
           mat-raised-button
           type="submit"
           disabled="{{ f.invalid }}"
         >
-          Başla
+          Start
         </button>
         <button
-          color="accent"
+          color="primary"
           *ngIf="!(exercises$ | async)"
           mat-raised-button
           type="button"
           (click)="fetchAgain()"
           disabled="{{ f.invalid }}"
         >
-          Tekrar Deneyin
+        Try again !
         </button>
       </mat-card-actions>
       <mat-card-footer></mat-card-footer>

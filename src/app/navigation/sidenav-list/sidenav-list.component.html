@@ -7,7 +7,7 @@
     *ngIf="!(isAuth$ | async)"
   >
     <mat-icon> face </mat-icon>
-    <span class="nav-caption">Kayıt</span></a
+    <span class="nav-caption">Sign Up</span></a
   >
   <a
     mat-list-item
@@ -16,7 +16,7 @@
     *ngIf="!(isAuth$ | async)"
   >
     <mat-icon>input</mat-icon>
-    <span class="nav-caption">Giriş</span></a
+    <span class="nav-caption">Sign In</span></a
   >
   <a
     mat-list-item
@@ -25,10 +25,10 @@
     *ngIf="isAuth$ | async"
   >
     <mat-icon>fitness_center</mat-icon>
-    <span class="nav-caption">Eğitim</span></a
+    <span class="nav-caption">Education</span></a
   >
   <a mat-list-item *ngIf="isAuth$ | async" (click)="onLogout()">
     <mat-icon>eject</mat-icon>
-    <span class="nav-caption">Çıkış</span></a
+    <span class="nav-caption">Sign Out</span></a
   >
 </mat-nav-list>
