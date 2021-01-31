@@ -4,7 +4,7 @@
       matInput
       type="text"
       (keyup)="doFilter($event.target.value)"
-      placeholder="Ara..."
+      placeholder="Search..."
     />
   </mat-form-field>
 </div>
@@ -20,19 +20,19 @@
     <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="calories">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Kalori</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Calorie</mat-header-cell>
     <mat-cell *matCellDef="let element">{{
       element.calories | number
     }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="duration">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Süre</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Duration</mat-header-cell>
     <mat-cell *matCellDef="let element">{{
       element.duration | number
     }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="state">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Durum</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.state }}</mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
