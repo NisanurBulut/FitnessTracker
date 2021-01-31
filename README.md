@@ -6,7 +6,7 @@
 - Data recording operations were made using FireBase cloud and authentication.
 - State management is done with the NgRx library.
 - Structures used: Store, Action, Reducer, Guard,
-Firebase Authentication
+Firebase Authentication, angular-material
 
 ![App](https://github.com/NisanurBulut/FitnessTracker/blob/master/src/assets/Trailer_FitnessTracker.gif)
 
