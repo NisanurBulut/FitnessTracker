@@ -1,3 +1,7 @@
+## Give a Star! :star:
+
+If you like or are using this project to learn or start your solution, please give it a star. Thanks!
+
 # FitnessTracker
 - The application is registered and the session is opened.
 - A selection is made from the defined exercise list and an exercise record is created.
